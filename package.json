@@ -1,0 +1,43 @@
+{
+  "name": "github-markdown-html",
+  "version": "1.0.0",
+  "bin": {
+    "github-markdown-html": "./bin/github-markdown-html.js"
+  },
+  "scripts": {
+    "start": "node bin/github-markdown-html start",
+    "build": "node bin/github-markdown-html build"
+  },
+  "dependencies": {
+    "cross-spawn": "^4.0.0",
+    "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "github-markdown-css": "^2.4.1",
+    "highlight-loader": "^0.7.2",
+    "highlight.js": "^9.7.0",
+    "html-loader": "^0.4.4",
+    "html-webpack-plugin": "^2.22.0",
+    "html-webpack-uncss-plugin": "^1.0.0",
+    "markdown-loader": "^0.1.7",
+    "rimraf": "^2.5.4",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1"
+  },
+  "description": ".md -> .html (with embedded Github styles, using webpack)",
+  "main": "bin/github-markdown-html.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csabapalfi/github-markdown-html.git"
+  },
+  "keywords": [
+    "github",
+    "markdown",
+    "webpack"
+  ],
+  "author": "Csaba Palfi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/csabapalfi/github-markdown-html/issues"
+  }
+}
