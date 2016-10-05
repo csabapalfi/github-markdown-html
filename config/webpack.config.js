@@ -7,7 +7,7 @@ const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 module.exports = (markdownFile) => ({
   entry: path.resolve(__dirname, '../src/index.js'),
   output: {
-    path: path.resolve(process.cwd(), 'build'),
+    path: path.resolve(process.cwd(), 'dist'),
     publicPath: '',
     filename: 'bundle.js'
   },
