@@ -10,7 +10,7 @@ const packageJsonPath = path.resolve(process.cwd(), 'package.json');
 const packageJsonSettings = !exists(packageJsonPath) ? {} :
   require(packageJsonPath)['github-markdown-html'];
 
-const markdownPath = 'README.md';
+const markdownPath = process.argv[2] || 'README.md';
 
 const defaultSettings = {
   html: {

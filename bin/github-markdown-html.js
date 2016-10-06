@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 const spawn = require('cross-spawn');
-const [,,script,markdownPath] = process.argv;
+const [,, script, markdownPath ] = process.argv;
 
 switch (script) {
 case 'build':
 case 'start':
   const result = spawn.sync(
     'node',
-    [require.resolve('../scripts/' + script), markdownPath],
+    [require.resolve('../scripts/' + script)]
+      .concat(markdownPath ? [markdownPath] : []),
     {stdio: 'inherit'}
   );
   process.exit(result.status);
