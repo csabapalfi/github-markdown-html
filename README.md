@@ -33,3 +33,22 @@ github-markdown-html build # open build/index.html
 ```sh
 github-markdown-html start # open http://localhost:8080
 ```
+
+### configuring via `package.json`
+
+Certain options can also be configured via `package.json` by adding a `github-markdown-html` key:
+
+```js
+{
+  'github-markdown-html': {
+    html: {
+      //html-webpack-plugin options
+    },
+    markdown: {
+      path: 'path to markdown file'
+    }
+  }
+}
+```
+
+See defaults in [/config/webpack.config.js](/config/webpack.config.js)
