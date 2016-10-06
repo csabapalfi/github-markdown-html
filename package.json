@@ -11,6 +11,7 @@
   "dependencies": {
     "cross-spawn": "^4.0.0",
     "css-loader": "^0.25.0",
+    "deep-assign": "^2.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "github-markdown-css": "^2.4.1",
     "highlight-loader": "^0.7.2",

@@ -3,8 +3,7 @@ process.env.NODE_ENV = 'development';
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 
-const markdownFile = process.argv[2]
-const config = require('../config/webpack.config')(markdownFile);
+const config = require('../config/webpack.config');
 const compiler = webpack(config);
 const devServer = new WebpackDevServer(compiler);
 

@@ -1,10 +1,40 @@
 const path = require('path');
+const { existsSync: exists, readFileSync: read } = require('fs');
+const deepAssign = require('deep-assign');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackUncssPlugin = require('html-webpack-uncss-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
-module.exports = (markdownFile) => ({
+const packageJsonPath = path.resolve(process.cwd(), 'package.json');
+const packageJsonSettings = !exists(packageJsonPath) ? {} :
+  require(packageJsonPath)['github-markdown-html'];
+
+const markdownPath = 'README.md';
+
+const defaultSettings = {
+  html: {
+    template: path.resolve(__dirname, '../src/index.html'),
+    title: read(path.resolve(process.cwd(), markdownPath))
+      .toString().split('\n')[0].replace(/# /, ''),
+    inject: false,
+    minify: {
+      removeComments: true,
+      collapseWhitespace: true,
+      removeRedundantAttributes: true,
+      keepClosingSlash: true,
+      minifyCSS: true,
+    }
+  },
+  markdown: {
+    path: markdownPath,
+  }
+};
+
+const {html, markdown} =
+  deepAssign(defaultSettings, packageJsonSettings);
+
+module.exports = ({
   entry: path.resolve(__dirname, '../src/index.js'),
   output: {
     path: path.resolve(process.cwd(), 'dist'),
@@ -27,21 +57,11 @@ module.exports = (markdownFile) => ({
   },
   resolve: {
     alias: {
-      'index.md': path.resolve(process.cwd(), markdownFile)
+      'index.md': path.resolve(process.cwd(), markdown.path)
     }
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../src/index.html'),
-      inject: false,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        keepClosingSlash: true,
-        minifyCSS: true,
-      }
-    }),
+    new HtmlWebpackPlugin(html),
     new HtmlWebpackUncssPlugin(),
     new ExtractTextWebpackPlugin('styles.css'),
   ]

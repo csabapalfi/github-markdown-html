@@ -4,9 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const rimrafSync = require('rimraf').sync;
 const webpack = require('webpack');
-
-const markdownFile = process.argv[2]
-const config = require('../config/webpack.config')(markdownFile);
+const config = require('../config/webpack.config');
 
 // Remove all content but keep the directory so that
 // if you're in it, you don't end up in Trash
