@@ -55,6 +55,10 @@ module.exports = ({
       },
     ]
   },
+  resolveLoader: {
+    root: path.resolve(__dirname, '../node_modules'),
+    moduleTemplates: ['*-loader']
+  },
   resolve: {
     alias: {
       'index.md': path.resolve(process.cwd(), markdown.path)
