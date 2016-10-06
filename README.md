@@ -51,4 +51,4 @@ Certain options can also be configured via `package.json` by adding a `github-ma
 }
 ```
 
-See defaults in [/config/webpack.config.js](/config/webpack.config.js)
+See defaults in `/config/webpack.config.js`.
