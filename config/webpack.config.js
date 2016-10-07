@@ -7,14 +7,15 @@ const HtmlWebpackUncssPlugin = require('html-webpack-uncss-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 const packageJsonPath = path.resolve(process.cwd(), 'package.json');
-const packageJsonSettings = !exists(packageJsonPath) ? {} :
-  require(packageJsonPath)['github-markdown-html'];
+const {author, 'github-markdown-html': settings } =
+  !exists(packageJsonPath) ? {} : require(packageJsonPath);
 
 const markdownPath = process.argv[2] || 'README.md';
 
-const defaultSettings = {
+const defaults = {
+  parseTitle: true,
+  parseAuthor: true,
   html: {
-    title: 'auto',
     template: path.resolve(__dirname, '../src/index.html'),
     inject: false,
     minify: {
@@ -31,13 +32,16 @@ const defaultSettings = {
   }
 };
 
-const {html, markdown} =
-  deepAssign(defaultSettings, packageJsonSettings);
+const {parseTitle, parseAuthor, html, markdown} = deepAssign(defaults, settings);
 
-if(html.title === 'auto') {
+if (parseTitle) {
   html.title = read(path.resolve(process.cwd(), markdownPath))
     .toString().split('\n')[0].replace(/# /, '')
   markdown.loaders = `${markdown.loaders}!${__dirname}/skip-head`
+}
+
+if (parseAuthor) {
+  html.author = author;
 }
 
 module.exports = ({

@@ -36,8 +36,11 @@
     "markdown",
     "webpack"
   ],
-  "author": "Csaba Palfi",
   "license": "MIT",
+  "author": {
+    "name": "Csaba Palfi",
+    "url": "https://csabapalfi.github.io"
+  },
   "bugs": {
     "url": "https://github.com/csabapalfi/github-markdown-html/issues"
   }

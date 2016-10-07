@@ -5,3 +5,8 @@
   margin: 0 auto;
   padding: 45px;
 }
+
+p.author {
+  text-align: right;
+  margin-top: -16px;
+}

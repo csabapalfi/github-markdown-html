@@ -41,6 +41,8 @@ Certain options can also be configured via `package.json` by adding a `github-ma
 ```js
 {
   'github-markdown-html': {
+    parseTitle: true,
+    parseAuthor: true,
     html: {
       //html-webpack-plugin options
     },
@@ -51,4 +53,8 @@ Certain options can also be configured via `package.json` by adding a `github-ma
 }
 ```
 
-See defaults in `/config/webpack.config.js`.
+`parseTitle` will expect the first line of your markdown to be an `h1` (using the `# title` syntax) and will make that the page title.
+
+`parseAuthor` will try to parse author name and url from `package.json` and add a simple byline straight below you `h1` title.
+
+See html and markdown defaults in `/config/webpack.config.js`.
