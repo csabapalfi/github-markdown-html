@@ -14,9 +14,8 @@ const markdownPath = process.argv[2] || 'README.md';
 
 const defaultSettings = {
   html: {
+    title: 'auto',
     template: path.resolve(__dirname, '../src/index.html'),
-    title: read(path.resolve(process.cwd(), markdownPath))
-      .toString().split('\n')[0].replace(/# /, ''),
     inject: false,
     minify: {
       removeComments: true,
@@ -28,11 +27,18 @@ const defaultSettings = {
   },
   markdown: {
     path: markdownPath,
+    loaders: 'html!highlight!markdown'
   }
 };
 
 const {html, markdown} =
   deepAssign(defaultSettings, packageJsonSettings);
+
+if(html.title === 'auto') {
+  html.title = read(path.resolve(process.cwd(), markdownPath))
+    .toString().split('\n')[0].replace(/# /, '')
+  markdown.loaders = `${markdown.loaders}!${__dirname}/skip-head`
+}
 
 module.exports = ({
   entry: path.resolve(__dirname, '../src/index.js'),
@@ -45,7 +51,7 @@ module.exports = ({
     loaders: [
       {
         test: /\.md$/,
-        loader: `html!highlight!markdown!${__dirname}/skip-head`
+        loader: markdown.loaders
       },
       {
         test: /\.css$/,
