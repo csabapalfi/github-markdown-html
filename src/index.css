@@ -6,6 +6,12 @@
   padding: 45px;
 }
 
+@media screen and (max-width: 480px) {
+  .markdown-body {
+    padding: 15px;
+  }
+}
+
 p.author {
   text-align: right;
   margin-top: -16px;
