@@ -45,7 +45,7 @@ module.exports = ({
     loaders: [
       {
         test: /\.md$/,
-        loader: "html!highlight!markdown"
+        loader: `html!highlight!markdown!${__dirname}/skip-head`
       },
       {
         test: /\.css$/,

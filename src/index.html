@@ -8,6 +8,7 @@
 <body>
   <style><%= compilation.assets['styles.css'].source() %></style>
   <article class="markdown-body">
+    <h1><%= htmlWebpackPlugin.options.title %></h1>
     <%= require('index.md') %>
   </article>
 </body>
