@@ -1,6 +1,7 @@
 const path = require('path');
-const { existsSync: exists, readFileSync: read } = require('fs');
+const { readFileSync: read } = require('fs');
 const deepAssign = require('deep-assign');
+const exists = require('path-exists').sync;
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackUncssPlugin = require('html-webpack-uncss-plugin');
