@@ -38,23 +38,23 @@ github-markdown-html start # open http://localhost:8080
 
 Certain options can also be configured via `package.json` by adding a `github-markdown-html` key:
 
-```js
+```json
 {
-  'github-markdown-html': {
-    parseTitle: true,
-    parseAuthor: true,
-    html: {
-      //html-webpack-plugin options
-    },
-    markdown: {
-      path: 'path to markdown file'
+  "github-markdown-html": {
+    "parseTitle": true,
+    "parseAuthor": true,
+    "gaTrackingId": "UA-XXXXXX-X",
+    "html": "html-webpack-plugin options",
+    "markdown": {
+      "path": "path to markdown file"
     }
   }
 }
 ```
+See defaults in `/config/webpack.config.js`.
 
 `parseTitle` will expect the first line of your markdown to be an `h1` (using the `# title` syntax) and will make that the page title.
 
 `parseAuthor` will try to parse author name and url from `package.json` and add a simple byline straight below you `h1` title.
 
-See html and markdown defaults in `/config/webpack.config.js`.
+`gaTrackingId` (optional) will be used to add a [ga-beacon](https://github.com/igrigorik/ga-beacon) pixel for lightweight tracking.

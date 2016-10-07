@@ -22,5 +22,8 @@
     <% } %>
     <%= require('index.md') %>
   </article>
+  <% if (htmlWebpackPlugin.options.gaTrackingId) { %>
+    <img src="https://ga-beacon.appspot.com/<%= htmlWebpackPlugin.options.gaTrackingId %>/<%= htmlWebpackPlugin.options.path %>?pixel" />
+  <% } %>
 </body>
 </html>
