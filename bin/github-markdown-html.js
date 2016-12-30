@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const spawn = require('cross-spawn');
-const [,, script, markdownPath ] = process.argv;
+const [,, script = 'start', markdownPath ] = process.argv;
 
 switch (script) {
 case 'build':
