@@ -20,16 +20,16 @@ npm install github-markdown-html
 ```sh
 github-markdown-html [script] [file]
 ```
-* `script` is one of `build` or `start`
+* `script` is one of `build` or `dev` (optional, defaults to `build`)
 * `file` is the path to the markdown file to process (optional, defaults to `README.md`)
 
 ### available scripts
 
-* `build` drops the built HTML in the `build` directory
+* `build` drops the built HTML in the current directory
 ```sh
-github-markdown-html build # open build/index.html
+github-markdown-html build # open index.html
 ```
-* `start` starts a development server listening on port 8080
+* `dev` starts a development server listening on port 8080
 ```sh
 github-markdown-html start # open http://localhost:8080
 ```
@@ -42,8 +42,6 @@ Certain options can also be configured via `package.json` by adding a `github-ma
 {
   "github-markdown-html": {
     "parseTitle": true,
-    "parseAuthor": true,
-    "gaTrackingId": "UA-XXXXXX-X",
     "html": "html-webpack-plugin options",
     "markdown": {
       "path": "path to markdown file"
@@ -54,7 +52,3 @@ Certain options can also be configured via `package.json` by adding a `github-ma
 See defaults in `/config/webpack.config.js`.
 
 `parseTitle` will expect the first line of your markdown to be an `h1` (using the `# title` syntax) and will make that the page title.
-
-`parseAuthor` will try to parse author name and url from `package.json` and add a simple byline straight below you `h1` title.
-
-`gaTrackingId` (optional) will be used to add a [ga-beacon](https://github.com/igrigorik/ga-beacon) pixel for lightweight tracking.

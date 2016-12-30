@@ -2,33 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>
-    <%= htmlWebpackPlugin.options.title %>
-    <% if (htmlWebpackPlugin.options.author) { %>
-      by <%= htmlWebpackPlugin.options.author.name %>
-    <% } %>
-  </title>
+  <title><%= htmlWebpackPlugin.options.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
   <style><%= compilation.assets['styles.css'].source() %></style>
   <article class="markdown-body">
-    <h1><%= htmlWebpackPlugin.options.title %></h1>
-    <% if (htmlWebpackPlugin.options.author) { %>
-      <p class="meta">
-        <!-- by -->
-        <a href="<%= htmlWebpackPlugin.options.author.url %>">
-          <%= htmlWebpackPlugin.options.author.name %><!--
-     --></a>
-        <% if (htmlWebpackPlugin.options.date) { %><!--
-       -->, <%= htmlWebpackPlugin.options.date %>
-        <% } %>
-      </p>
-    <% } %>
     <%= require('index.md') %>
   </article>
-  <% if (htmlWebpackPlugin.options.gaTrackingId) { %>
-    <img src="https://ga-beacon.appspot.com/<%= htmlWebpackPlugin.options.gaTrackingId %>/<%= htmlWebpackPlugin.options.path %>?pixel" />
-  <% } %>
 </body>
 </html>

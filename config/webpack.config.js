@@ -46,22 +46,12 @@ const {
 if (parseTitle) {
   html.title = read(path.resolve(process.cwd(), markdownPath))
     .toString().split('\n')[0].replace(/# /, '')
-  markdown.loaders = `${markdown.loaders}!${__dirname}/skip-head`
-}
-
-if (parseAuthor) {
-  html.author = author;
-}
-
-if (gaTrackingId) {
-  html.gaTrackingId = gaTrackingId;
-  html.path = name;
 }
 
 module.exports = ({
   entry: path.resolve(__dirname, '../src/index.js'),
   output: {
-    path: path.resolve(process.cwd(), 'gh-pages'),
+    path: path.resolve(process.cwd(), '.'),
     publicPath: '',
     filename: 'bundle.js'
   },

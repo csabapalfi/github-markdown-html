@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 const spawn = require('cross-spawn');
-const [,, script = 'start', markdownPath ] = process.argv;
+const [,, script = 'build', markdownPath ] = process.argv;
 
 switch (script) {
 case 'build':
-case 'start':
+case 'dev':
   const result = spawn.sync(
     'node',
     [require.resolve('../scripts/' + script)]
