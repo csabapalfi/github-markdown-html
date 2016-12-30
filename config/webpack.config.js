@@ -6,6 +6,7 @@ const exists = require('path-exists').sync;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackUncssPlugin = require('html-webpack-uncss-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const DeleteFilesPlugin = require('./delete-files');
 
 const packageJsonPath = path.resolve(process.cwd(), 'package.json');
 const {name ,author, 'github-markdown-html': settings } =
@@ -60,7 +61,7 @@ if (gaTrackingId) {
 module.exports = ({
   entry: path.resolve(__dirname, '../src/index.js'),
   output: {
-    path: path.resolve(process.cwd(), 'dist'),
+    path: path.resolve(process.cwd(), 'gh-pages'),
     publicPath: '',
     filename: 'bundle.js'
   },
@@ -91,5 +92,6 @@ module.exports = ({
     new HtmlWebpackPlugin(html),
     new HtmlWebpackUncssPlugin(),
     new ExtractTextWebpackPlugin('styles.css'),
+    new DeleteFilesPlugin(['styles.css', 'bundle.js']),
   ]
 });
