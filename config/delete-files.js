@@ -1,4 +1,4 @@
-const { unlinkSync } = require('fs');
+const { unlinkSync, existsSync } = require('fs');
 const { resolve } = require('path');
 
 module.exports = class DeleteFilesPlugin {
@@ -12,6 +12,7 @@ module.exports = class DeleteFilesPlugin {
     compiler.plugin('done', (stats) => {
       this.files
         .map(file => resolve(outputPath, file))
+        .filter(file => existsSync(file))
         .forEach(unlinkSync);
     });
   }
