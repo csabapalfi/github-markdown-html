@@ -1,5 +1,7 @@
 # github-markdown-html
 
+[![build](https://travis-ci.org/csabapalfi/github-markdown-html.png)](https://travis-ci.org/csabapalfi/github-markdown-html)
+
 .md -> .html (with embedded Github styles)
 
 Uses webpack to perform the following:
