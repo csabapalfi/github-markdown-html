@@ -9,16 +9,19 @@ const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const DeleteFilesPlugin = require('./delete-files');
 
 const packageJsonPath = path.resolve(process.cwd(), 'package.json');
-const {name ,author, 'github-markdown-html': settings } =
+const nodeModulesPath = path.resolve(__dirname, '../node_modules');
+const defaultTemplateLoader =
+  `${nodeModulesPath}/html-webpack-plugin/lib/loader.js`;
+const defaultTemplatePath = path.resolve(__dirname, '../src/index.html');
+const {'github-markdown-html': settings } =
   !exists(packageJsonPath) ? {} : require(packageJsonPath);
 
 const markdownPath = process.argv[2] || 'README.md';
 
 const defaults = {
   parseTitle: true,
-  parseAuthor: true,
   html: {
-    template: path.resolve(__dirname, '../src/index.html'),
+    template: `!!${defaultTemplateLoader}!${defaultTemplatePath}`,
     inject: false,
     minify: {
       removeComments: true,
@@ -37,8 +40,6 @@ const defaults = {
 
 const {
   parseTitle,
-  parseAuthor,
-  gaTrackingId,
   html,
   markdown
 } = deepAssign(defaults, settings);
@@ -51,7 +52,7 @@ if (parseTitle) {
 module.exports = ({
   entry: path.resolve(__dirname, '../src/index.js'),
   output: {
-    path: path.resolve(process.cwd(), '.'),
+    path: process.cwd(),
     publicPath: '',
     filename: 'bundle.js'
   },
@@ -70,7 +71,7 @@ module.exports = ({
     ]
   },
   resolveLoader: {
-    root: path.resolve(__dirname, '../node_modules'),
+    root: nodeModulesPath,
     moduleTemplates: ['*-loader']
   },
   resolve: {

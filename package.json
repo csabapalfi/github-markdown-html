@@ -5,8 +5,7 @@
     "github-markdown-html": "./bin/github-markdown-html.js"
   },
   "scripts": {
-    "start": "node bin/github-markdown-html start",
-    "build": "node bin/github-markdown-html build"
+    "test": "jest"
   },
   "dependencies": {
     "cross-spawn": "^4.0.0",
@@ -27,7 +26,9 @@
   },
   "description": ".md -> .html (with embedded Github styles, using webpack)",
   "main": "bin/github-markdown-html.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^18.1.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/csabapalfi/github-markdown-html.git"
