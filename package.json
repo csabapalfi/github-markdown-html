@@ -5,7 +5,7 @@
     "github-markdown-html": "./bin/github-markdown-html.js"
   },
   "scripts": {
-    "test": "jest"
+    "test": "./bin/github-markdown-html.js && jest"
   },
   "dependencies": {
     "cross-spawn": "^4.0.0",
