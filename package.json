@@ -8,8 +8,8 @@
     "test": "./bin/github-markdown-html.js && jest"
   },
   "dependencies": {
-    "cross-spawn": "^4.0.0",
-    "css-loader": "^0.25.0",
+    "cross-spawn": "^5.0.1",
+    "css-loader": "^0.26.1",
     "deep-assign": "^2.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "github-markdown-css": "^2.4.1",
