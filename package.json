@@ -1,6 +1,6 @@
 {
   "name": "github-markdown-html",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "bin": {
     "github-markdown-html": "./bin/github-markdown-html.js"
   },
