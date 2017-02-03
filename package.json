@@ -18,7 +18,7 @@
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.22.0",
     "html-webpack-uncss-plugin": "^1.0.0",
-    "markdown-loader": "^0.1.7",
+    "markdown-loader": "^2.0.0",
     "path-exists": "^3.0.0",
     "rimraf": "^2.5.4",
     "webpack": "^1.13.2",
