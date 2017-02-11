@@ -9,6 +9,6 @@ const devServer = new WebpackDevServer(compiler);
 
 devServer.listen(8080, (err) => {
   if (err) {
-    return console.error(err.message || error);
+    return console.error(err.message || err);
   }
 });

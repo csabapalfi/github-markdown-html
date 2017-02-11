@@ -1,19 +1,19 @@
 #!/usr/bin/env node
-const spawn = require('cross-spawn');
-const [,, script = 'build', markdownPath ] = process.argv;
+const { spawnSync: spawn } = require('child_process');
+const [ ,, script = 'build', markdownPath ] = process.argv;
 
 switch (script) {
-case 'build':
-case 'dev':
-  const result = spawn.sync(
+  case 'build':
+  case 'dev':
+    const result = spawn(
     'node',
     [require.resolve('../scripts/' + script)]
       .concat(markdownPath ? [markdownPath] : []),
     {stdio: 'inherit'}
   );
-  process.exit(result.status);
-  break;
-default:
-  console.log('Unknown script "' + script + '".');
-  break;
+    process.exit(result.status);
+    break;
+  default:
+    console.log('Unknown script "' + script + '".');
+    break;
 }

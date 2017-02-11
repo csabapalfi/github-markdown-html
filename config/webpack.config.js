@@ -1,88 +1,70 @@
-const path = require('path');
+const { resolve } = require('path');
 const { readFileSync: read } = require('fs');
-const deepAssign = require('deep-assign');
-const exists = require('path-exists').sync;
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackUncssPlugin = require('html-webpack-uncss-plugin');
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const DeleteFilesPlugin = require('./delete-files');
 
-const packageJsonPath = path.resolve(process.cwd(), 'package.json');
-const nodeModulesPath = path.resolve(__dirname, '../node_modules');
-const defaultTemplateLoader =
-  `${nodeModulesPath}/html-webpack-plugin/lib/loader.js`;
-const defaultTemplatePath = path.resolve(__dirname, '../src/index.html');
-const {'github-markdown-html': settings } =
-  !exists(packageJsonPath) ? {} : require(packageJsonPath);
-
-const markdownPath = process.argv[2] || 'README.md';
-
-const defaults = {
-  parseTitle: true,
-  html: {
-    template: `!!${defaultTemplateLoader}!${defaultTemplatePath}`,
-    inject: false,
-    minify: {
-      removeComments: true,
-      collapseWhitespace: true,
-      removeRedundantAttributes: true,
-      keepClosingSlash: true,
-      minifyCSS: true,
-      preventAttributesEscaping: true,
-    }
-  },
-  markdown: {
-    path: markdownPath,
-    loaders: 'html!highlight!markdown'
-  }
-};
-
-const {
-  parseTitle,
-  html,
-  markdown
-} = deepAssign(defaults, settings);
-
-if (parseTitle) {
-  html.title = read(path.resolve(process.cwd(), markdownPath))
-    .toString().split('\n')[0].replace(/# /, '')
-}
+const markdownPath = resolve('README.md');
+const templatePath = resolve(__dirname, '../src/index.html');
+const cssPath = resolve(__dirname, '../src/index.css');
+const jsPath = resolve(__dirname, '../src/index.js');
+const nodeModulesPath = resolve(__dirname, '../node_modules');
+const templateLoader = `${nodeModulesPath}/html-webpack-plugin/lib/loader.js`;
 
 module.exports = ({
-  entry: path.resolve(__dirname, '../src/index.js'),
+  entry: jsPath,
   output: {
     path: process.cwd(),
-    publicPath: '',
-    filename: 'bundle.js'
+    publicPath: ''
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.md$/,
-        loader: markdown.loaders
+        use: [
+          'html-loader',
+          'highlight-loader',
+          'markdown-loader'
+        ]
       },
       {
         test: /\.css$/,
-        loader: ExtractTextWebpackPlugin.extract(
-            'css?minimize&discardUnused=true'
-        )
-      },
+        use: {
+          loader: 'css-loader',
+          options: {
+            minimize: true,
+            discardUnused: true
+          }
+        }
+      }
     ]
   },
   resolveLoader: {
-    root: nodeModulesPath,
-    moduleTemplates: ['*-loader']
+    modules: [ nodeModulesPath ],
+    moduleExtensions: ['*-loader']
   },
   resolve: {
     alias: {
-      'index.md': path.resolve(process.cwd(), markdown.path)
+      'index.md': markdownPath,
+      'index.css': cssPath
     }
   },
   plugins: [
-    new HtmlWebpackPlugin(html),
+    new HtmlWebpackPlugin({
+      template: `!!${templateLoader}!${templatePath}`,
+      title: read(markdownPath, 'utf-8').split('\n')[0].replace(/# /, ''),
+      inject: false,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        keepClosingSlash: true,
+        minifyCSS: true,
+        preventAttributesEscaping: true
+      }
+    }),
     new HtmlWebpackUncssPlugin(),
-    new ExtractTextWebpackPlugin('styles.css'),
-    new DeleteFilesPlugin(['styles.css', 'bundle.js']),
+    new DeleteFilesPlugin(['main.js'])
   ]
 });

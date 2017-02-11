@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <style><%= compilation.assets['styles.css'].source() %></style>
+  <style><%= require('index.css') %></style>
   <article class="markdown-body">
     <%= require('index.md') %>
   </article>
