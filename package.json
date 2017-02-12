@@ -18,6 +18,7 @@
     "html-webpack-plugin": "^2.22.0",
     "html-webpack-uncss-plugin": "^1.0.0",
     "markdown-loader": "^2.0.0",
+    "marked": "^0.3.6",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0"
   },
