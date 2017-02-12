@@ -4,6 +4,7 @@ const { readFileSync: read } = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackUncssPlugin = require('html-webpack-uncss-plugin');
 const DeleteFilesPlugin = require('./delete-files');
+const renderer = require('./renderer');
 
 const markdownPath = resolve('README.md');
 const templatePath = resolve(__dirname, '../src/index.html');
@@ -25,7 +26,10 @@ module.exports = ({
         use: [
           'html-loader',
           'highlight-loader',
-          'markdown-loader'
+          {
+            loader: 'markdown-loader',
+            options: { renderer }
+          }
         ]
       },
       {
