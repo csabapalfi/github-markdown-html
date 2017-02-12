@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const { spawnSync: spawn } = require('child_process');
-const [ ,, script = 'build', markdownPath ] = process.argv;
+const [ ,, script = 'dev', markdownPath ] = process.argv;
 
 switch (script) {
   case 'build':

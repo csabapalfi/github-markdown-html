@@ -21,7 +21,7 @@ npm install github-markdown-html
 
 ## simple use-case
 
-Once installed (globally) you can go into any of your repos with a `README.md` then execute `github-markdown-html`.
+Once installed (globally) you can go into any of your repos with a `README.md` then execute `github-markdown-html build`.
 
 This will drop an `index.html` in the same directory that you can simply publish with the [gh-pages](https://www.npmjs.com/package/gh-pages) module:
 
@@ -36,7 +36,7 @@ gh-pages -d . -s index.html
 ```sh
 github-markdown-html [script]
 ```
-* `script` is one of `build` or `dev` (optional, defaults to `build`)
+* `script` is one of `build` or `dev` (optional, defaults to `dev`)
 
 ### available scripts
 
