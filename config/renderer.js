@@ -5,7 +5,11 @@ renderer.heading = function (text, level) {
   const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
   const result = `<h${level}>` +
     (level > 1
-      ? `<a class="heading-anchor" href="#${escapedText}">${text}</a>`
+      ? `<a
+          class="heading-anchor"
+          name="${escapedText}"
+          href="#${escapedText}"
+        >${text}</a>`
       : text
     ) +
     `</h${level}>`;
