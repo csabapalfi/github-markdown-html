@@ -6,7 +6,7 @@
   },
   "scripts": {
     "pretest": "semistandard",
-    "test": "./bin/github-markdown-html.js && grep -qiv 'error' < index.html"
+    "test": "./bin/github-markdown-html.js build && grep -qiv 'error' < index.html"
   },
   "dependencies": {
     "css-loader": "^0.26.1",

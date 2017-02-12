@@ -12,6 +12,7 @@ const cssPath = resolve(__dirname, '../src/index.css');
 const jsPath = resolve(__dirname, '../src/index.js');
 const nodeModulesPath = resolve(__dirname, '../node_modules');
 const templateLoader = `${nodeModulesPath}/html-webpack-plugin/lib/loader.js`;
+const nodeEnv = process.env.NODE_ENV;
 
 module.exports = ({
   entry: jsPath,
@@ -68,7 +69,8 @@ module.exports = ({
         preventAttributesEscaping: true
       }
     }),
-    new HtmlWebpackUncssPlugin(),
     new DeleteFilesPlugin(['main.js'])
-  ]
+  ].concat(
+    nodeEnv === 'production' ? new HtmlWebpackUncssPlugin() : []
+  )
 });
