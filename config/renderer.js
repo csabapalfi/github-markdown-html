@@ -2,14 +2,14 @@ const { Renderer } = require('marked');
 const renderer = new Renderer();
 
 renderer.heading = function (text, level) {
-  var escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-
-  return '<h' + level + '><a name="' +
-                escapedText +
-                 '" class="anchor" href="#' +
-                 escapedText +
-                 '"><span class="header-link"></span></a>' +
-                  text + '</h' + level + '>';
+  const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+  const result = `<h${level}>` +
+    (level > 1
+      ? `<a class="heading-anchor" href="#${escapedText}">${text}</a>`
+      : text
+    ) +
+    `</h${level}>`;
+  return result;
 };
 
 module.exports = renderer;
