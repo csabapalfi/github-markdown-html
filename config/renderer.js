@@ -10,6 +10,6 @@ renderer.heading = function (text, level) {
                  escapedText +
                  '"><span class="header-link"></span></a>' +
                   text + '</h' + level + '>';
-},
+};
 
 module.exports = renderer;
