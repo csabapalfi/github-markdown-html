@@ -2,7 +2,6 @@ const { unlinkSync, existsSync } = require('fs');
 const { resolve } = require('path');
 
 module.exports = class DeleteFilesPlugin {
-
   constructor (files = []) {
     this.files = files;
   }

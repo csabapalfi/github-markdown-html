@@ -25,7 +25,7 @@
   "description": "Markdown to HTML with webpack",
   "main": "bin/github-markdown-html.js",
   "devDependencies": {
-    "semistandard": "^9.2.1"
+    "semistandard": "^10.0.0"
   },
   "repository": {
     "type": "git",
