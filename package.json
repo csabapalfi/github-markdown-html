@@ -9,7 +9,7 @@
     "test": "./bin/github-markdown-html.js build && grep -qiv 'error' < index.html"
   },
   "dependencies": {
-    "css-loader": "^0.27.0",
+    "css-loader": "^0.28.6",
     "deep-assign": "^2.0.0",
     "github-markdown-css": "^2.4.1",
     "highlight-loader": "^0.7.2",
