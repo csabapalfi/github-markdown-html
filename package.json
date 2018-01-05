@@ -14,7 +14,7 @@
     "github-markdown-css": "^2.4.1",
     "highlight-loader": "^0.7.2",
     "highlight.js": "^9.7.0",
-    "html-loader": "^0.4.4",
+    "html-loader": "^0.5.4",
     "html-webpack-plugin": "^2.22.0",
     "html-webpack-uncss-plugin": "^1.0.0",
     "markdown-loader": "^2.0.0",
