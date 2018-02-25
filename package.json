@@ -20,7 +20,7 @@
     "markdown-loader": "^2.0.0",
     "marked": "^0.3.6",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.3.0"
+    "webpack-dev-server": "^3.0.0"
   },
   "description": "Markdown to HTML with webpack",
   "main": "bin/github-markdown-html.js",
